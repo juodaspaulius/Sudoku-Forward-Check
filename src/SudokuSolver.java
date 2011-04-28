@@ -247,9 +247,10 @@ public class SudokuSolver implements ISudokuSolver {
 			return true;
 		}	
 		
-		
+		//sudas
+		//sudu malunas
 
-	
+	//asdasd asd asd
 		//------------------------------------------------------------------
 		//						INITIAL_FC
 		//------------------------------------------------------------------
