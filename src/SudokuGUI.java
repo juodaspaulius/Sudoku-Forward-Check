@@ -14,6 +14,10 @@ import java.awt.event.*;
  */
 public class SudokuGUI extends JComponent implements MouseListener, KeyListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8167068105887269512L;
 	private Image 			background, active_cell, solve, notSolvable;
 	private Image 			border_left, border_right,border_top, border_bottom;
 	private Image 			corner_left_top, corner_left_bottom, corner_right_top, corner_right_bottom;
@@ -55,7 +59,7 @@ public class SudokuGUI extends JComponent implements MouseListener, KeyListener{
 		this.addMouseListener(this);
 		typingArea = new JTextField(0);
         typingArea.addKeyListener(this);
-        add(typingArea, BorderLayout.PAGE_START);
+        this.add(typingArea, BorderLayout.PAGE_START);
         ins = 150;
         cRow = -1;
         cCol = -1;
@@ -126,7 +130,7 @@ public class SudokuGUI extends JComponent implements MouseListener, KeyListener{
 	}
 
 	public void mouseClicked(MouseEvent e){
-	    add(typingArea, BorderLayout.PAGE_START);
+	   this. add(typingArea, BorderLayout.PAGE_START);
         typingArea.requestFocusInWindow();
       
         int row = (e.getY()-ins)/imSize;
