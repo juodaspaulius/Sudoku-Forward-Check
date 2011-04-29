@@ -9,7 +9,7 @@ public class ShowSudoku {
 
 		// Setup of the frame containing the puzzle
 		JFrame f = new JFrame();
-		f.setSize(1000,1000);
+		f.setSize(800,650);
 		f.setTitle("Sudoku Solver");
 		f.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().add(g);    

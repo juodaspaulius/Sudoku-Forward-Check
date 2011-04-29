@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -32,35 +33,38 @@ public class SudokuGUI extends JComponent implements MouseListener, KeyListener{
 	
 	public SudokuGUI(ISudokuSolver solver)
 	{
-		background = Toolkit.getDefaultToolkit().getImage("imgs/background.png");	
-		border_left = Toolkit.getDefaultToolkit().getImage("imgs/border_left.png");
-		border_right = Toolkit.getDefaultToolkit().getImage("imgs/border_right.png");
-		border_top = Toolkit.getDefaultToolkit().getImage("imgs/border_top.png");
-		border_bottom = Toolkit.getDefaultToolkit().getImage("imgs/border_bottom.png");
-		corner_left_top = Toolkit.getDefaultToolkit().getImage("imgs/corner_left_top.png");
-		corner_left_bottom = Toolkit.getDefaultToolkit().getImage("imgs/corner_left_bottom.png");
-		corner_right_top = Toolkit.getDefaultToolkit().getImage("imgs/corner_right_top.png");
-		corner_right_bottom = Toolkit.getDefaultToolkit().getImage("imgs/corner_right_bottom.png");
-		solve = Toolkit.getDefaultToolkit().getImage("imgs/solve.png");
-		active_cell = Toolkit.getDefaultToolkit().getImage("imgs/active_background.png");
-		notSolvable = Toolkit.getDefaultToolkit().getImage("imgs/notSolved.png");
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		//String path = classLoader.getResource("/images/logo.jpg").getPath();
+		
+		background = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/background.png").getPath());	
+		border_left = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/border_left.png").getPath());
+		border_right = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/border_right.png").getPath());
+		border_top = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/border_top.png").getPath());
+		border_bottom = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/border_bottom.png").getPath());
+		corner_left_top = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/corner_left_top.png").getPath());
+		corner_left_bottom = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/corner_left_bottom.png").getPath());
+		corner_right_top = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/corner_right_top.png").getPath());
+		corner_right_bottom = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/corner_right_bottom.png").getPath());
+		solve = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/solve.png").getPath());
+		active_cell = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/active_background.png").getPath());
+		notSolvable = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/notSolved.png").getPath());
 
-		one = Toolkit.getDefaultToolkit().getImage("imgs/one.png");
-		two = Toolkit.getDefaultToolkit().getImage("imgs/two.png");
-		three = Toolkit.getDefaultToolkit().getImage("imgs/three.png");
-		four = Toolkit.getDefaultToolkit().getImage("imgs/four.png");
-		five = Toolkit.getDefaultToolkit().getImage("imgs/five.png");
-		six = Toolkit.getDefaultToolkit().getImage("imgs/six.png");
-		seven = Toolkit.getDefaultToolkit().getImage("imgs/seven.png");
-		eight = Toolkit.getDefaultToolkit().getImage("imgs/eight.png");
-		nine = Toolkit.getDefaultToolkit().getImage("imgs/nine.png");
+		one = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/one.png").getPath());
+		two = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/two.png").getPath());
+		three = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/three.png").getPath());
+		four = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/four.png").getPath());
+		five = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/five.png").getPath());
+		six = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/six.png").getPath());
+		seven = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/seven.png").getPath());
+		eight = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/eight.png").getPath());
+		nine = Toolkit.getDefaultToolkit().getImage(classLoader.getResource("imgs/nine.png").getPath());
 
 		this.solver = solver;
 		this.addMouseListener(this);
 		typingArea = new JTextField(0);
         typingArea.addKeyListener(this);
         this.add(typingArea, BorderLayout.PAGE_START);
-        ins = 150;
+        ins = 20;
         cRow = -1;
         cCol = -1;
         imSize = 60;
@@ -126,11 +130,13 @@ public class SudokuGUI extends JComponent implements MouseListener, KeyListener{
 		g.drawImage(solve, imSize*(size+1)+ins, imSize*(size/2)+ins, this);
 		
 		if (!canBeSolved)
-			g.drawImage(notSolvable, 0+ins + (int)(imSize*((double)size/2)-125), (int)(imSize*((double)size/2)+ins-50), this);		
+			g.drawImage(notSolvable, 0+ins + (int)(imSize*((double)size/2)-125), (int)(imSize*((double)size/2)+ins-50), this);
+				
 	}
 
 	public void mouseClicked(MouseEvent e){
-	   this. add(typingArea, BorderLayout.PAGE_START);
+	   this.add(typingArea, BorderLayout.PAGE_START);
+	   this.setLayout(new FlowLayout());
         typingArea.requestFocusInWindow();
       
         int row = (e.getY()-ins)/imSize;
