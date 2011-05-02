@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class SudokuSolver implements ISudokuSolver {
 
+	static int interation=0;
 	int[][] puzzle;
 	int size;
 	ArrayList<ArrayList<Integer>> D; // = new ArrayList<ArrayList<Integer>>();
@@ -23,7 +24,7 @@ public class SudokuSolver implements ISudokuSolver {
 
 		ArrayList<Integer> DElement = new ArrayList<Integer>();
 		
-		for (int i= 0;i<=size*size;i++){
+		for (int i= 1;i<=size*size;i++){
 			DElement.add(i);
 		}
 		
@@ -67,37 +68,27 @@ public class SudokuSolver implements ISudokuSolver {
 		if (complete) {
 			return asn;
 		} else {
-			ArrayList<ArrayList<Integer>> Dold = new ArrayList<ArrayList<Integer>>(
-					size * size * size * size);
+			ArrayList<ArrayList<Integer>> Dold = new ArrayList<ArrayList<Integer>>(	size * size * size * size);
 			for (int i = 0; i < D.size(); i++) {
-				ArrayList<Integer> DoldElement = new ArrayList<Integer>(
-						D.get(i));
+				ArrayList<Integer> DoldElement = new ArrayList<Integer>(D.get(i));
 				Dold.add(DoldElement);
 			}
-			for (Integer V : D.get(X)) {
+			ArrayList <Integer> temp = new ArrayList<Integer>(D.get(X));
+			for (Integer V : temp) {
 				if (AC_FC(X, V)) {
 					asn.set(X, V);
-					for (int ind1=0; ind1< 9; ind1++){
-						for (int ind2=0;ind2<9;ind2++){
-							System.out.print(String.format("%d\t", asn.get(GetVariable(ind2, ind1))));
-						}
-						System.out.println();
-						System.out.println();
-					}
-					System.out.println("---------------------------------------------------------------");
-		
 					ArrayList<Integer> R = FC(asn);
 					if (R != null) {
 						return R;
 					} else {
 						asn.set(X, 0);
 						for (int i = 0; i < D.size(); i++) {
-							D.set(i, Dold.get(i));
+							D.set(i, new ArrayList<Integer>( Dold.get(i)));
 						}
 					}
 				} else {
 					for (int i = 0; i < D.size(); i++) {
-						D.set(i, Dold.get(i));
+						D.set(i,  new ArrayList<Integer>( Dold.get(i)));
 					}
 				}
 			}
