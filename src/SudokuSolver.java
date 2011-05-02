@@ -77,6 +77,15 @@ public class SudokuSolver implements ISudokuSolver {
 			for (Integer V : D.get(X)) {
 				if (AC_FC(X, V)) {
 					asn.set(X, V);
+					for (int ind1=0; ind1< 9; ind1++){
+						for (int ind2=0;ind2<9;ind2++){
+							System.out.print(String.format("%d\t", asn.get(GetVariable(ind2, ind1))));
+						}
+						System.out.println();
+						System.out.println();
+					}
+					System.out.println("---------------------------------------------------------------");
+		
 					ArrayList<Integer> R = FC(asn);
 					if (R != null) {
 						return R;
